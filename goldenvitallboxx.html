@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golden VitallBoxx – Proyectos GOLDEN</title>
+  <link rel="icon" type="image/png" href="logo_golden.png">
+  <style>
+    /* Reset y base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Navegación fija */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+
+    header img.logo {
+      width: 150px;
+      height: auto;
+    }
+
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00a859;
+    }
+
+    /* Menú móvil */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* Estilos para móviles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        animation: slideDown 0.3s ease forwards;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+      }
+
+      .nav-links.active {
+        display: flex;
+        animation-play-state: running;
+      }
+
+      .nav-links a {
+        margin: 10px 0;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        transition: background 0.3s;
+      }
+
+      .nav-links a:hover {
+        background: #f0f0f0;
+        padding: 6px 0;
+        border-radius: 4px;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hero con imagen de fondo */
+    .hero-producto {
+      margin-top: 70px;
+      height: 50vh;
+      background-image: url('vitallboxx.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+    }
+
+    .hero-producto::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-producto .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 800px;
+    }
+
+    .hero-producto h1 {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-producto p {
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Contenido principal */
+    .contenido {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+      line-height: 1.7;
+    }
+
+    .contenido h2 {
+      font-size: 1.8rem;
+      margin: 45px 0 20px;
+      color: #00a859;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .contenido p, .contenido li {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+    }
+
+    .contenido ul {
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    .contenido li {
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer img.logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #00a859;
+    }
+
+    footer .social {
+      margin: 12px 0;
+    }
+
+    footer .social img {
+      width: 20px;
+      height: 20px;
+      margin: 0 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<header>
+  <img src="logo_goldenn.png" alt="GOLDEN Proyectos" class="logo"/>
+  <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+  <nav class="nav-links">
+    <a href="inicio.html">Inicio</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+</header>
+
+<!-- Hero con imagen de fondo detrás del texto -->
+<section class="hero-producto">
+  <div class="content">
+    <h1>Golden VitallBoxx</h1>
+    <p>Organización y bienestar en un solo producto</p>
+  </div>
+</section>
+
+<!-- Contenido técnico -->
+<main class="contenido">
+  <div class="seccion">
+    <h2>Golden VitallBoxx – Especificaciones Técnicas y Funcionalidad</h2>
+    <p>
+      La Golden VitallBoxx es una caja organizada en tres compartimentos independientes diseñada para promover hábitos de bienestar, higiene y cuidado personal. Su estructura permite almacenar elementos esenciales como snacks saludables, alcohol desinfectante y un compartimento adicional destinado a productos variables o complementarios. Este diseño integra funcionalidad, portabilidad y organización, ofreciendo una solución práctica para el uso diario en entornos educativos, laborales o domésticos.
+    </p>
+  </div>
+
+  <div class="seccion">
+    <h2>Estructura General</h2>
+    <ul>
+      <li><strong>Tipo de producto:</strong> Caja de bienestar y cuidado personal.</li>
+      <li><strong>Número de compartimentos:</strong> 3 divisiones internas independientes.</li>
+      <li><strong>Compartimento A:</strong> Para snacks saludables o alimentos empaquetados.</li>
+      <li><strong>Compartimento B:</strong> Para alcohol desinfectante u otros artículos de higiene.</li>
+      <li><strong>Compartimento C:</strong> Compartimento “sorpresa”, destinado a un producto adicional variable según la edición o el objetivo del usuario.</li>
+      <li><strong>Volumen útil total:</strong> 1,5–2,5 litros según modelo.</li>
+      <li><strong>Sistema de cierre:</strong> Tapa abatible con mecanismo seguro y bisagras reforzadas.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Materiales</h2>
+    <ul>
+      <li><strong>Cuerpo y compartimentos:</strong> Polímeros de alta resistencia, libres de BPA y aptos para contacto con alimentos.</li>
+      <li><strong>Sellos y cierres:</strong> Silicona de grado higiénico para evitar derrames y asegurar aislamiento.</li>
+      <li><strong>Acabado:</strong> Superficie lisa, no porosa y fácil de desinfectar.</li>
+      <li><strong>Resistencia química:</strong> Tolerancia a alcohol al 70%, gel antibacterial y soluciones de limpieza.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Propiedades Físicas</h2>
+    <ul>
+      <li><strong>Peso aproximado:</strong> 250–450 g.</li>
+      <li><strong>Dimensiones:</strong> Compactas para transporte en mochilas y maletines.</li>
+      <li><strong>Estabilidad térmica:</strong> Mantiene su integridad estructural entre –10 °C y 60 °C.</li>
+      <li><strong>Hermeticidad:</strong> Compartimento de higiene con opción hermética para evitar fugas.</li>
+      <li><strong>Durabilidad:</strong> Fabricada para soportar uso diario prolongado y caídas moderadas.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Usabilidad y Ergonomía</h2>
+    <ul>
+      <li>Diseño de apertura simple, manejable con una sola mano.</li>
+      <li>Separación interna fija, evitando mezcla de productos o aromas.</li>
+      <li>Tamaño portátil y liviano, adecuado para estudiantes, personal de oficina o usuarios activos.</li>
+      <li>Base antideslizante para mayor estabilidad durante el uso.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Funciones Principales</h2>
+    <ul>
+      <li><strong>Organización del bienestar personal:</strong> Permite llevar alimentos saludables, artículos de higiene y un elemento adicional de forma ordenada.</li>
+      <li><strong>Higiene en movimiento:</strong> El compartimento destinado al alcohol facilita la desinfección en entornos públicos.</li>
+      <li><strong>Elemento sorpresa:</strong> El tercer compartimento puede contener productos de autocuidado, accesorios, suplementos, notas motivacionales u otros artículos variables, dependiendo de cada edición o uso.</li>
+      <li><strong>Promoción de hábitos saludables:</strong> Combina alimentación, higiene y bienestar en un solo producto estructurado.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Higiene y Mantenimiento</h2>
+    <ul>
+      <li>Apta para lavado manual o en lavavajillas (dependiendo de la versión).</li>
+      <li>Resistente a productos desinfectantes.</li>
+      <li>Superficie no porosa, minimizando riesgos de contaminación.</li>
+      <li>Diseño de bordes suaves, facilitando limpieza completa.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Presentación del Producto</h2>
+    <ul>
+      <li><strong>Formatos disponibles:</strong> Tamaño estándar con tres divisiones fijas.</li>
+      <li><strong>Opciones de color:</strong> Gama neutra o colores personalizados según línea.</li>
+      <li><strong>Accesorios opcionales:</strong>
+        <ul>
+          <li>Etiquetas identificadoras.</li>
+          <li>Mini botellas recargables para alcohol.</li>
+          <li>Stickers organizadores.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <img src="logo_goldenn2.png" alt="GOLDEN Proyectos" class="logo"/>
+  <p>
+    <a href="#">Términos y condiciones</a> |
+    <a href="#">Política de privacidad</a>
+  </p>
+  <div class="social">
+    <a href="#"><img src="ig.png" alt="Instagram"/></a>
+    <a href="#"><img src="tiktok.png" alt="TikTok"/></a>
+    <a href="#"><img src="whatsapp.png" alt="WhatsApp"/></a>
+  </div>
+  <p>&copy; 2025 Proyectos GOLDEN. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Menú móvil
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      navLinks.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golden Jacket Air – Proyectos GOLDEN</title>
+  <link rel="icon" type="image/png" href="logo_golden.png">
+  <style>
+    /* Reset y base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Navegación fija */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+
+    header img.logo {
+      width: 150px;
+      height: auto;
+    }
+
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00a859;
+    }
+
+    /* Menú móvil */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* Estilos para móviles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        animation: slideDown 0.3s ease forwards;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+      }
+
+      .nav-links.active {
+        display: flex;
+        animation-play-state: running;
+      }
+
+      .nav-links a {
+        margin: 10px 0;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        transition: background 0.3s;
+      }
+
+      .nav-links a:hover {
+        background: #f0f0f0;
+        padding: 6px 0;
+        border-radius: 4px;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hero con imagen de fondo */
+    .hero-producto {
+      margin-top: 70px;
+      height: 50vh;
+      background-image: url('jacketair.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+    }
+
+    /* Capa de oscurecimiento para mejor legibilidad */
+    .hero-producto::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6); /* Oscurece la imagen para que el texto destaque */
+    }
+
+    .hero-producto .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 800px;
+    }
+
+    .hero-producto h1 {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-producto p {
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Contenido principal */
+    .contenido {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+      line-height: 1.7;
+    }
+
+    .contenido h2 {
+      font-size: 1.8rem;
+      margin: 45px 0 20px;
+      color: #00a859;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .contenido p, .contenido li {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+    }
+
+    .contenido ul {
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    .contenido li {
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer img.logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #00a859;
+    }
+
+    footer .social {
+      margin: 12px 0;
+    }
+
+    footer .social img {
+      width: 20px;
+      height: 20px;
+      margin: 0 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<header>
+  <img src="logo_goldenn.png" alt="GOLDEN Proyectos" class="logo"/>
+  <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+  <nav class="nav-links">
+    <a href="inicio.html">Inicio</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+</header>
+
+<!-- Hero con imagen de fondo detrás del texto -->
+<section class="hero-producto">
+  <div class="content">
+    <h1>Golden Jacket Air</h1>
+    <p>Tecnología portátil para el confort térmico</p>
+  </div>
+</section>
+
+<!-- Contenido técnico -->
+<main class="contenido">
+  <div class="seccion">
+    <h2>Golden Jacket Air – Especificaciones Técnicas y Funcionamiento</h2>
+    <p>
+      La Golden Jacket Air es una prenda tecnológica diseñada para ofrecer enfriamiento portátil mediante un sistema de ventilación integrado. Su construcción combina materiales livianos con componentes electrónicos de bajo consumo, logrando un balance óptimo entre funcionalidad, autonomía y confort.
+    </p>
+  </div>
+
+  <div class="seccion">
+    <h2>Sistema de Ventilación</h2>
+    <ul>
+      <li><strong>Tipo:</strong> Ventiladores internos compactos.</li>
+      <li><strong>Cantidad:</strong> 2 unidades ubicadas en la zona inferior posterior para maximizar la circulación ascendente del aire.</li>
+      <li><strong>Velocidades:</strong> 3 niveles ajustables (bajo, medio, alto).</li>
+      <li><strong>Flujo de aire:</strong> Distribución uniforme hacia la espalda, torso y cuello.</li>
+      <li><strong>Ruido:</strong> Operación silenciosa (&lt; 35 dB, aproximado).</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Alimentación y Autonomía</h2>
+    <ul>
+      <li><strong>Fuente de energía:</strong> Batería recargable mediante puerto USB.</li>
+      <li><strong>Capacidad recomendada:</strong> Power bank externo (5V/2A) o módulo interno según modelo.</li>
+      <li><strong>Autonomía estimada:</strong>
+        <ul>
+          <li>Velocidad baja: 8–12 horas</li>
+          <li>Velocidad media: 5–7 horas</li>
+          <li>Velocidad alta: 3–5 horas</li>
+        </ul>
+      </li>
+      <li><strong>Consumo energético:</strong> Optimizado para operación continua sin sobrecalentamiento.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Materiales y Construcción</h2>
+    <ul>
+      <li><strong>Tejido principal:</strong> Mezcla ligera y transpirable de poliéster.</li>
+      <li><strong>Revestimiento interno:</strong> Material resistente a la fricción y diseñado para mejorar la circulación del aire.</li>
+      <li><strong>Peso total:</strong> Aproximadamente 600–800 g (dependiendo de talla y batería).</li>
+      <li><strong>Resistencia:</strong> Buena tolerancia al desgaste mecánico y al uso prolongado.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Diseño y Ergonomía</h2>
+    <ul>
+      <li>Integración discreta del sistema de ventilación sin afectar la estética de la prenda.</li>
+      <li>Distribución ergonómica del peso para evitar incomodidad en la espalda.</li>
+      <li>Controles externos accesibles para cambiar la velocidad sin interrumpir actividades.</li>
+      <li>Sistema modular que permite retirar los ventiladores para lavado o mantenimiento.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Seguridad y Protección</h2>
+    <ul>
+      <li>Protección contra sobrecarga y cortocircuito en el módulo de alimentación.</li>
+      <li>Ventiladores con rejillas de seguridad para evitar contacto accidental.</li>
+      <li>Doble capa interna para aislar los componentes electrónicos del usuario.</li>
+    </ul>
+  </div>
+
+  <div class="seccion">
+    <h2>Usos Recomendados</h2>
+    <ul>
+      <li>Actividades al aire libre.</li>
+      <li>Trabajo en ambientes calurosos o con poca ventilación.</li>
+      <li>Desplazamientos urbanos en verano.</li>
+      <li>Uso recreativo o deportivo de baja intensidad.</li>
+      <li>Escenarios donde se requiere enfriamiento personal sin sistemas externos.</li>
+    </ul>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <img src="logo_goldenn2.png" alt="GOLDEN Proyectos" class="logo"/>
+  <p>
+    <a href="#">Términos y condiciones</a> |
+    <a href="#">Política de privacidad</a>
+  </p>
+  <div class="social">
+    <a href="#"><img src="ig.png" alt="Instagram"/></a>
+    <a href="#"><img src="tiktok.png" alt="TikTok"/></a>
+    <a href="#"><img src="whatsapp.png" alt="WhatsApp"/></a>
+  </div>
+  <p>&copy; 2025 Proyectos GOLDEN. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Menú móvil
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      navLinks.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto - Proyectos GOLDEN</title>
+  <link rel="icon" type="image/png" href="logo_golden.png">
+  <style>
+    /* Reset y base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Navegación fija */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+
+    header img.logo {
+      width: 150px;
+      height: auto;
+    }
+
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00a859;
+    }
+
+    /* Menú móvil */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* Estilos para móviles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        animation: slideDown 0.3s ease forwards;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+      }
+
+      .nav-links.active {
+        display: flex;
+        animation-play-state: running;
+      }
+
+      .nav-links a {
+        margin: 10px 0;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        transition: background 0.3s;
+      }
+
+      .nav-links a:hover {
+        background: #f0f0f0;
+        padding: 6px 0;
+        border-radius: 4px;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hero Section - Contacto */
+    .hero-contact {
+      background: url('ecologico.jpg') center/cover no-repeat;
+      height: 30vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      margin-top: 70px;
+    }
+    .hero-contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+    .hero-contact .text {
+      position: relative;
+      z-index: 1;
+      font-size: 2rem;
+    }
+
+    /* Contacto Section */
+    .contacto {
+      padding: 60px 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+
+    .intro {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .info {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .info div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social a {
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
+    }
+
+    .social img {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Formulario */
+    .contacto form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contacto input,
+    .contacto textarea {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .contacto button {
+      background: #00a859;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contacto button:hover {
+      background: #007f45;
+    }
+
+    /* Mensaje de éxito */
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    footer img.logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #00a859;
+    }
+
+    footer .social {
+      margin: 12px 0;
+    }
+
+    footer .social img {
+      width: 20px;
+      height: 20px;
+      margin: 0 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegación -->
+  <header>
+    <img src="logo_goldenn.png" alt="GOLDEN Proyectos" class="logo"/>
+    <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+    <nav class="nav-links">
+      <a href="inicio.html">Inicio</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Hero Contacto -->
+  <section class="hero-contact">
+    <div class="text">Contáctanos</div>
+  </section>
+
+  <!-- Sección de Contacto -->
+  <section class="contacto">
+    <p class="intro">¿Tienes preguntas o sugerencias? ¡Escríbenos y con gusto te atenderemos!</p>
+
+    <div class="info">
+      <div>
+        <img src="fono.jpg" alt="Teléfono">
+        <span>+51 987 743 820</span>
+      </div>
+      <div>
+        <img src="mail.png" alt="Correo">
+        <span>goldengum@hotmail.com</span>
+      </div>
+      <div>
+        <img src="clock.png" alt="Horario">
+        <span>Lunes a viernes de 9am a 5pm</span>
+      </div>
+    </div>
+
+    <div class="social">
+      <a href="https://www.instagram.com/goldengum.oficial?igsh=MTZvYXh1MnBsYzB5dA=="><img src="ig.png" alt="Instagram"/></a>
+      <a href="https://www.tiktok.com/@golden.gum.oficia?_t=ZM-8yCVuVWsXFY&_r=1"><img src="tiktok.png" alt="TikTok"/></a>
+      <a href="https://wa.me/51987743820"><img src="whatsapp.png" alt="WhatsApp"/></a>
+    </div>
+
+    <!-- Formulario -->
+    <form id="contactForm">
+      <input type="text" id="nombre" placeholder="Nombre completo" required/>
+      <input type="email" id="correo" placeholder="Correo electrónico" required/>
+      <textarea id="mensaje" rows="5" placeholder="¿Tienes una idea? ¿Quieres colaborar? Escríbenos." required></textarea>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+
+    <div id="successMessage" class="success-message">¡Mensaje enviado con éxito!</div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <img src="logo_goldenn2.png" alt="GOLDEN Proyectos" class="logo"/>
+    <p>
+      <a href="#">Términos y condiciones</a> |
+      <a href="#">Política de privacidad</a>
+    </p>
+    <div class="social">
+      <a href="https://www.instagram.com/goldengum.oficial?igsh=MTZvYXh1MnBsYzB5dA=="><img src="ig.png" alt="Instagram"/></a>
+      <a href="https://www.tiktok.com/@golden.gum.oficia?_t=ZM-8yCVuVWsXFY&_r=1"><img src="tiktok.png" alt="TikTok"/></a>
+      <a href="https://wa.me/51987743820"><img src="whatsapp.png" alt="WhatsApp"/></a>
+    </div>
+    <p>&copy; 2025 Proyectos GOLDEN. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Menú móvil
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // Simular envío del formulario
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const correo = document.getElementById('correo').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+
+      if (!nombre || !correo || !mensaje) {
+        alert('Por favor, completa todos los campos.');
+        return;
+      }
+
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block';
+      document.getElementById('contactForm').reset();
+
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
+

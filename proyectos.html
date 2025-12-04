@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proyectos - Proyectos GOLDEN</title>
+  <link rel="icon" type="image/png" href="logo_golden.png">
+  <style>
+    /* Reset y base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Navegación fija */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+
+    header img.logo {
+      width: 150px;
+      height: auto;
+    }
+
+    nav a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00a859;
+    }
+
+    /* Menú móvil */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* Estilos para móviles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        animation: slideDown 0.3s ease forwards;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation-fill-mode: forwards;
+        animation-play-state: paused;
+      }
+
+      .nav-links.active {
+        display: flex;
+        animation-play-state: running;
+      }
+
+      .nav-links a {
+        margin: 10px 0;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        transition: background 0.3s;
+      }
+
+      .nav-links a:hover {
+        background: #f0f0f0;
+        padding: 6px 0;
+        border-radius: 4px;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Sección principal */
+    .hero-proyectos {
+      margin-top: 70px;
+      padding: 60px 20px 40px;
+      text-align: center;
+    }
+
+    .hero-proyectos h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .hero-proyectos p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* Grid de proyectos */
+    .proyectos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      padding: 0 20px 60px;
+    }
+
+    .proyecto-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      width: 100%;
+      max-width: 500px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .proyecto-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    .proyecto-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .proyecto-content {
+      padding: 25px;
+    }
+
+    .proyecto-content h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .proyecto-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .proyecto-features {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .proyecto-features h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #00a859;
+    }
+
+    .proyecto-features ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .proyecto-features li {
+      font-size: 0.95rem;
+      margin: 6px 0;
+      color: #444;
+    }
+
+    .btn-detalles {
+      display: inline-block;
+      background: #00a859;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .btn-detalles:hover {
+      background: #007f45;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    footer img.logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #00a859;
+    }
+
+    footer .social {
+      margin: 12px 0;
+    }
+
+    footer .social img {
+      width: 20px;
+      height: 20px;
+      margin: 0 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<header>
+  <img src="logo_goldenn.png" alt="GOLDEN Proyectos" class="logo"/>
+  <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+  <nav class="nav-links">
+    <a href="inicio.html">Inicio</a>
+    <a href="proyectos.html">Proyectos</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero-proyectos">
+  <h1>Nuestros Proyectos</h1>
+  <p>Explora cada una de nuestras innovaciones diseñadas con propósito, funcionalidad y sostenibilidad.</p>
+</section>
+
+<!-- Proyectos -->
+<div class="proyectos-grid">
+  <!-- Golden Jacket Air -->
+  <div class="proyecto-card">
+    <div class="proyecto-img" style="background-image: url('jacketair.png');"></div>
+    <div class="proyecto-content">
+      <h2>Golden Jacket Air</h2>
+      <p>Una casaca con sistema de ventilación interna que mantiene una temperatura corporal adecuada en ambientes cálidos, combinando diseño moderno con utilidad para actividades diarias o laborales.</p>
+      <div class="proyecto-features">
+        <h3>Características clave</h3>
+        <ul>
+          <li>Ventilación activa integrada</li>
+          <li>Tejido transpirable de alta calidad</li>
+          <li>Batería recargable de larga duración</li>
+          <li>Diseño ergonómico y moderno</li>
+        </ul>
+      </div>
+      <a href="goldenjacketair.html" class="btn-detalles">Ver detalles</a>
+    </div>
+  </div>
+
+  <!-- Golden Gum -->
+  <div class="proyecto-card">
+    <div class="proyecto-img" style="background-image: url('goldenduominttt.png');"></div>
+    <div class="proyecto-content">
+      <h2>Golden Gum</h2>
+      <p>Chicle elaborado con materiales 100% biodegradables, diseñado para disminuir el impacto ambiental de los residuos convencionales, manteniendo sabor y textura premium.</p>
+      <div class="proyecto-features">
+        <h3>Características clave</h3>
+        <ul>
+          <li>Base 100% biodegradable</li>
+          <li>Sabores naturales y duraderos</li>
+          <li>Empaque sostenible sin plástico</li>
+          <li>Hecho en Perú con estándares ecológicos</li>
+        </ul>
+      </div>
+      <a href="goldengum.html" class="btn-detalles">Ver detalles</a>
+    </div>
+  </div>
+
+  <!-- Golden VitallBoxx -->
+  <div class="proyecto-card">
+    <div class="proyecto-img" style="background-image: url('vitallboxx.png');"></div>
+    <div class="proyecto-content">
+      <h2>Golden VitallBoxx</h2>
+      <p>Caja especialmente diseñada para almacenar snacks nutritivos, artículos personales o implementos de bienestar, facilitando una rutina más organizada y práctica.</p>
+      <div class="proyecto-features">
+        <h3>Características clave</h3>
+        <ul>
+          <li>Compartimentos modulares ajustables</li>
+          <li>Fabricada con materiales reciclados</li>
+          <li>Ideal para rutinas activas y saludables</li>
+          <li>Ligera, portátil y duradera</li>
+        </ul>
+      </div>
+      <a href="goldenvitallboxx.html" class="btn-detalles">Ver detalles</a>
+    </div>
+  </div>
+
+  <!-- Golden Save Water (Hydroscan) -->
+  <div class="proyecto-card">
+    <div class="proyecto-img" style="background-image: url('hydroscan.png');"></div>
+    <div class="proyecto-content">
+      <h2>Golden Save Water</h2>
+      <p>Dispositivo inteligente que mide la humedad del suelo y determina con precisión cuándo una planta necesita riego, optimizando el uso del agua y favoreciendo el cuidado de jardines, macetas y huertos.</p>
+      <div class="proyecto-features">
+        <h3>Características clave</h3>
+        <ul>
+          <li>Sensores de humedad de alta precisión</li>
+          <li>Alertas inteligentes vía app o visual</li>
+          <li>Ahorro de agua hasta del 60%</li>
+          <li>Compatible con todo tipo de plantas</li>
+        </ul>
+      </div>
+      <a href="goldensavewater.html" class="btn-detalles">Ver detalles</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <img src="logo_goldenn2.png" alt="GOLDEN Proyectos" class="logo"/>
+  <p>
+    <a href="#">Términos y condiciones</a> |
+    <a href="#">Política de privacidad</a>
+  </p>
+  <div class="social">
+    <a href="#"><img src="ig.png" alt="Instagram"/></a>
+    <a href="#"><img src="tiktok.png" alt="TikTok"/></a>
+    <a href="#"><img src="whatsapp.png" alt="WhatsApp"/></a>
+  </div>
+  <p>&copy; 2025 Proyectos GOLDEN. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+  // Menú móvil
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      navLinks.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>
+
